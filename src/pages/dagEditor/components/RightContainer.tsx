@@ -32,12 +32,13 @@ export default function IndexPage() {
           </div>
         </Tooltip>
         <Tooltip title={'展开'} placement="left">
-          <div className="icon-box">
-            <MenuOutlined
-              onClick={() => {
-                dispatch(toggleCollapseRightContainer());
-              }}
-            />
+          <div
+            className="icon-box"
+            onClick={() => {
+              dispatch(toggleCollapseRightContainer());
+            }}
+          >
+            <MenuOutlined />
           </div>
         </Tooltip>
       </div>
@@ -48,15 +49,16 @@ export default function IndexPage() {
     <div className="page-dag-editor-right-container">
       <Tabs
         tabBarExtraContent={
-          <div className="icon-box">
-            <Tooltip title={'折叠'} placement="left">
-              <MenuOutlined
-                onClick={() => {
-                  dispatch(toggleCollapseRightContainer());
-                }}
-              />
-            </Tooltip>
-          </div>
+          <Tooltip title={'折叠'} placement="left">
+            <div
+              className="icon-box"
+              onClick={() => {
+                dispatch(toggleCollapseRightContainer());
+              }}
+            >
+              <MenuOutlined />
+            </div>
+          </Tooltip>
         }
       >
         <TabPane tab="批量操作" key="batchOperate">

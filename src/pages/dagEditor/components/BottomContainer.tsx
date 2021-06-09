@@ -29,12 +29,13 @@ export default function IndexPage() {
       <Tabs
         tabBarExtraContent={
           <Tooltip title={`${isCollapse ? '展开' : '折叠'}`}>
-            <div className="icon-box">
-              <MenuOutlined
-                onClick={() => {
-                  dispatch(toggleCollapseBottomContainer());
-                }}
-              />
+            <div
+              className="icon-box"
+              onClick={() => {
+                dispatch(toggleCollapseBottomContainer());
+              }}
+            >
+              <MenuOutlined />
             </div>
           </Tooltip>
         }
