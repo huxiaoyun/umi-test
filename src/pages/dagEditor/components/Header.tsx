@@ -12,7 +12,7 @@ export default function IndexPage() {
         <img src="https://gw.alicdn.com/imgextra/i3/O1CN01Tv2uK91dT8Nu21p7Z_!!6000000003736-2-tps-330-164.png" />
       </span>
       <span className="middle-container">
-        <span className="require-name">阿里妈妈需求链路图</span>
+        <span className="require-name">xxxx需求链路图</span>
         <Popover
           content={
             <div>

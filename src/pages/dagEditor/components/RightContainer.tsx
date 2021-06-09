@@ -3,22 +3,59 @@
  */
 
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { Input, Tabs } from 'antd';
-import { MenuOutlined } from '@ant-design/icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { Input, Tabs, Tooltip } from 'antd';
+import { MenuOutlined, PartitionOutlined } from '@ant-design/icons';
+import { useAppSelector, useAppDispatch } from '../hooks';
+import {
+  toggleCollapseRightContainer,
+  isRightContainerCollapse,
+} from '../reducer/layout';
 
 import './RightContaienr.less';
 
 const { TabPane } = Tabs;
 const { Search } = Input;
 
+console.log('toggleCollapseRightContainer', toggleCollapseRightContainer);
+
 export default function IndexPage() {
+  const isCollapse = useAppSelector(isRightContainerCollapse);
+  const dispatch = useAppDispatch();
+
+  if (isCollapse) {
+    return (
+      <div className="page-dag-editor-right-container is-collapse">
+        <Tooltip title={'批量操作'} placement="left">
+          <div className="icon-box">
+            <PartitionOutlined />
+          </div>
+        </Tooltip>
+        <Tooltip title={'展开'} placement="left">
+          <div className="icon-box">
+            <MenuOutlined
+              onClick={() => {
+                dispatch(toggleCollapseRightContainer());
+              }}
+            />
+          </div>
+        </Tooltip>
+      </div>
+    );
+  }
+
   return (
     <div className="page-dag-editor-right-container">
       <Tabs
         tabBarExtraContent={
-          <div>
-            <MenuOutlined />
+          <div className="icon-box">
+            <Tooltip title={'折叠'} placement="left">
+              <MenuOutlined
+                onClick={() => {
+                  dispatch(toggleCollapseRightContainer());
+                }}
+              />
+            </Tooltip>
           </div>
         }
       >

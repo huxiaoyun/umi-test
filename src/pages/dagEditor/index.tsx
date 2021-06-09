@@ -1,20 +1,23 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
 import Header from './components/Header';
 import MainContent from './components/MainContent';
+import { store } from './store';
 
 import './index.less';
 
 export default function DAGEditorPage() {
   return (
-    <div className="page-dag-editor">
-      <div className="page-dag-editor-top">
-        <Header />
+    <Provider store={store}>
+      <div className="page-dag-editor">
+        <div className="page-dag-editor-top">
+          <Header />
+        </div>
+        <div className="page-dag-editor-middle">
+          <MainContent />
+        </div>
       </div>
-      <div className="page-dag-editor-middle">
-        <MainContent />
-      </div>
-    </div>
+    </Provider>
   );
 }
 

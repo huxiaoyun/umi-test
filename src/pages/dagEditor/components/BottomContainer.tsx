@@ -4,27 +4,45 @@
 
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Input, Tabs } from 'antd';
+import { Tooltip, Tabs } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
+import { useAppSelector, useAppDispatch } from '../hooks';
+import {
+  toggleCollapseBottomContainer,
+  isBottomContainerCollapse,
+} from '../reducer/layout';
 
 import './BottomContainer.less';
 
 const { TabPane } = Tabs;
 
 export default function IndexPage() {
+  const isCollapse = useAppSelector(isBottomContainerCollapse);
+  const dispatch = useAppDispatch();
+
   return (
-    <div className="page-dag-editor-bottom-container">
+    <div
+      className={`page-dag-editor-bottom-container ${
+        isCollapse ? 'is-collapse' : ''
+      }`}
+    >
       <Tabs
         tabBarExtraContent={
-          <div>
-            <MenuOutlined />
-          </div>
+          <Tooltip title={`${isCollapse ? '展开' : '折叠'}`}>
+            <div className="icon-box">
+              <MenuOutlined
+                onClick={() => {
+                  dispatch(toggleCollapseBottomContainer());
+                }}
+              />
+            </div>
+          </Tooltip>
         }
       >
         <TabPane tab="影响面" key="fluence">
           影响面
         </TabPane>
-        <TabPane tab="变更节点" key="fluence">
+        <TabPane tab="变更节点" key="changeNode">
           变更节点
         </TabPane>
       </Tabs>
